@@ -2,7 +2,7 @@
   "name": "telegram-bot",
   "version": "1.0.0",
   "description": "Telegram bot for Rakcs",
-  "main": "index.js",
+  "main": "bot.js",
   "scripts": {
     "start": "nodemon bot.js"
   },
