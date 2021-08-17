@@ -10,6 +10,7 @@ const modToken = process.env.DB_AUTH
 //Depuracion de errores
 bot.on("polling_error" , console.log)
 
+
 //Apartado Privado
 
 //Boton de start para nuevos usuarios
@@ -79,8 +80,13 @@ bot.on('message', (msg) => {
 //Comando Ping (Para comprobar si el bot esta activo)
 bot.onText(/^\/ping/, (msg) => {
     let chatId = msg.chat.id;
-    bot.sendMessage(chatId, "Pong!")
-    console.log(msg)
+    let msgAuthor = msh.from.id;
+    if(msgAuthor === 520419049){
+        bot.sendMessage(chatId, "Pong!")
+        console.log(msg)
+    } else {
+        bot.sendMessage(chatId, "Pong!")
+    }
 })
 
 //Comando de ayuda
@@ -102,9 +108,8 @@ bot.onText(/^\/help/, (msg) => {
 
 //Comando para enviar las alertas de streams y videos
 bot.on('message', (msg) => {
-    let msgAuthor = msg.from.first_name
     let chatId = msg.chat.id
-    if(msgAuthor === 'IFTTT' && chatAdsId === chatId){
+    if(chatId === -1001561696994 && msg.from.username === 'IFTTT'){
         bot.copyMessage(chatId, msg.message_id)
         bot.forwardMessage(chatAdsId, msg.message_id)
     }
@@ -119,7 +124,7 @@ bot.onText(/^\/normas/, (msg) => {
 //Comando para enviar links
 bot.on('message', (msg) => {
     let chatId = msg.chat.id
-    let entitiesObj = msg.entities[0]
+    let entitiesObj = msg.entities[0];
     let typeText = entitiesObj.type
     if(typeText === 'url'){
         bot.sendMessage(chatId, `El usuario ${msg.from.username}, acaba de enviar un enlace`)
