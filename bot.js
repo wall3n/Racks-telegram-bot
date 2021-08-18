@@ -49,6 +49,7 @@ bot.on('callback_query', function onCallbackQuery(accionboton){
             ]
         }
     };
+    let inviteLink = process.env.DB_LINK
 
     
     if(data === 'normas'){
@@ -58,7 +59,7 @@ bot.on('callback_query', function onCallbackQuery(accionboton){
     } else if(data === 'aceptar'){
         bot.sendMessage(chatId, `Perfecto, aqui tiene su invitacion al grupo continue: ${inviteLink}`)
     } else if(data === 'stop'){
-        bot.sendMessage('Entendido, hasta otra')
+        bot.sendMessage(chatId, 'Entendido, hasta otra')
     }
 
 })
@@ -71,6 +72,7 @@ bot.on('message', (msg) => {
         let newUserName = msg.new_chat_members.first_name
         msg.sendMessage(chatId, `Buenas ${newUserName} ha entrado al grupo y ha sido detectado como un bot`) 
     }
+
 })
 
 //Apartado publico
@@ -78,7 +80,7 @@ bot.on('message', (msg) => {
 //Comando Ping (Para comprobar si el bot esta activo)
 bot.onText(/^\/ping/, (msg) => {
     let chatId = msg.chat.id;
-    let msgAuthor = msh.from.id;
+    let msgAuthor = msg.from.id;
     if(msgAuthor === 520419049){
         bot.sendMessage(chatId, "Pong!")
         console.log(msg)
@@ -117,15 +119,5 @@ bot.on('message', (msg) => {
 bot.onText(/^\/normas/, (msg) => {
     let chatId = msg.chat.id;
     bot.sendMessage(chatId, `${normasText}`, { parse_mode: "HTML" })
-})
-
-//Comando para enviar links
-bot.on('message', (msg) => {
-    let chatId = msg.chat.id
-    let entitiesObj = msg.entities[0];
-    let typeText = entitiesObj.type
-    if(typeText === 'url'){
-        bot.sendMessage(chatId, `El usuario ${msg.from.username}, acaba de enviar un enlace`)
-    }
 })
 
