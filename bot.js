@@ -72,7 +72,6 @@ bot.on('message', (msg) => {
         let newUserName = msg.new_chat_members.first_name
         msg.sendMessage(chatId, `Buenas ${newUserName} ha entrado al grupo y ha sido detectado como un bot`) 
     }
-
 })
 
 //Apartado publico
@@ -95,13 +94,8 @@ bot.onText(/^\/help/, (msg) => {
     let chatType = msg.chat.type
     if(chatType === 'private'){
     bot.sendMessage(chatId, 'Por favor introduzca el token de autenticacion:')
-    bot.on('message', (msg) => {
-        let chatId = msg.chat.id
-        let chatContent = msg.text
-        console.log(msg)
-        if(chatType === 'private' && chatContent === modToken){
-            bot.sendMessage(chatId, '<b>Apartado de ayuda</b>\n\n<i><b>Comandos:</b></i>\n/ping Permite conocer el estado del bot para cualquier administrador\n/normas Permite enviar las normas al chat del grupo\n\nFuncionalidades:\n-Formulario de entrada: Permite a cualquier usuario que entre al servidor tenga que aceptar las normas y pulsar sobre la pantalla asi evitando la posible entrada de bots camuflados\n-Alerta de Bots: Esta implementada una funcionalidad que se activa de manera automatica para que avise en el grupo la entrada de cualquier cuenta marcada con el identificador de bot', { parse_mode: "HTML"})
-        }
+    bot.onText(/^\970c897e69bb1002053f337e85e7fcae/, (msg) => {
+    bot.sendMessage(chatId, '<b>Apartado de ayuda</b>\n\n<i><b>Comandos:</b></i>\n/ping Permite conocer el estado del bot para cualquier administrador\n/normas Permite enviar las normas al chat del grupo\n\nFuncionalidades:\n-Formulario de entrada: Permite a cualquier usuario que entre al servidor tenga que aceptar las normas y pulsar sobre la pantalla asi evitando la posible entrada de bots camuflados\n-Alerta de Bots: Esta implementada una funcionalidad que se activa de manera automatica para que avise en el grupo la entrada de cualquier cuenta marcada con el identificador de bot', { parse_mode: "HTML"})
     })
     }
 })
