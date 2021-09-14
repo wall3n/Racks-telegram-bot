@@ -5,6 +5,7 @@
   "main": "bot.js",
   "scripts": {
     "start": "nodemon bot.js"
+    "produce": "node bot.js"
   },
   "author": "Wall3n",
   "license": "MIT",
