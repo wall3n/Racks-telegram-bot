@@ -65,7 +65,7 @@ bot.on('callback_query', function onCallbackQuery(accionboton){
 })
 
 //Funcion para enviar un mensaje si se detecta que un bot entra en el grupo
-bot.on('message', (msg) => {
+bot.on('text', (msg) => {
     let chatId = msg.chat.id;
     let chatType = msg.chat.type;
     if(msg.new_chat_members != undefined && chatType === 'supergroup' && msg.new_chat_member.is_bot){
@@ -101,7 +101,7 @@ bot.onText(/^\/help/, (msg) => {
 })
 
 //Comando para enviar las alertas de streams y videos
-bot.on('message', (msg) => {
+bot.on('text', (msg) => {
     let chatId = msg.chat.id
     if(chatId === -1001561696994 && msg.from.username === 'IFTTT'){
         bot.copyMessage(chatId, msg.message_id)
