@@ -4,7 +4,7 @@
   "description": "Telegram bot for Rakcs",
   "main": "bot.js",
   "scripts": {
-    "start": "nodemon bot.js"
+    "start": "nodemon bot.js",
     "produce": "node bot.js"
   },
   "author": "Wall3n",
